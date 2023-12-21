@@ -1,6 +1,7 @@
 ESX = exports['es_extended']:getSharedObject()
 
 lib.locale()
+lib.versionCheck('gabovrs/vrs_mdt')
 
 local wantedPlayers = {}
 
