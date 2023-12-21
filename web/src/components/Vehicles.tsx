@@ -4,29 +4,32 @@ import { faMagnifyingGlass, faCarSide, faTable } from '@fortawesome/free-solid-s
 import { fetchNui } from '../utils/fetchNui'
 import Header from './Header'
 import Button from './Button'
+import { useTranslation } from 'react-i18next'
 
 const Vehicle = ({ data }:any) => {
+  const { t } = useTranslation();
+
   return (
     <div className='mt-4'>
       <div className='w-full p-4 rounded-lg border border-gray-800'>
-        <h1 className='text-base font-semibold text-white-100 leading-7'><FontAwesomeIcon icon={faTable}/> Información</h1>
-        <p className='text-gray-400 leading-6'>Datos sobre el vehículo.</p>
+        <h1 className='text-base font-semibold text-white-100 leading-7'><FontAwesomeIcon icon={faTable}/> {t('vehicle_data')}</h1>
+        <p className='text-gray-400 leading-6'>{t('vehicle_data_description')}</p>
         <div className='mt-2 border-t border-gray-800'>
           <dl className='divide-y divide-gray-800'>
             <div className="py-3 grid grid-cols-2">
-              <dt className="text-sm font-medium">Matricula</dt>
+              <dt className="text-sm font-medium">{t('plate')}</dt>
               <dd className="text-sm text-gray-400">{data.plate}</dd>
             </div>
             <div className="py-3 grid grid-cols-2">
-              <dt className="text-sm font-medium">Titular</dt>
+              <dt className="text-sm font-medium">{t('owner')}</dt>
               <dd className="text-sm text-gray-400">{data.firstName} {data.lastName}</dd>
             </div>
             <div className="py-3 grid grid-cols-2">
-              <dt className="text-sm font-medium">Marca</dt>
+              <dt className="text-sm font-medium">{t('brand')}</dt>
               <dd className="text-sm text-gray-400">{data.brand}</dd>
             </div>
             <div className="py-3 grid grid-cols-2">
-              <dt className="text-sm font-medium">Modelo</dt>
+              <dt className="text-sm font-medium">{t('model')}</dt>
               <dd className="text-sm text-gray-400">{data.model}</dd>
             </div>
           </dl>
@@ -45,6 +48,7 @@ interface VehicleData {
 }
 
 const Vehicles = () => {
+  const { t } = useTranslation();
   const [searchPlate, setSearchPlate] = useState<string>('');
   const [vehicleData, setVehicleData] = useState<VehicleData | null>(null);
 
@@ -57,19 +61,19 @@ const Vehicles = () => {
     fetchNui('getVehicleData', { plate: searchPlate }).then(data => {
       setVehicleData(data)
     }).catch(e => {
-      // setVehicleData({ firstName: 'Gabriel', lastName: 'Varas', plate: searchPlate, brand: 'Ford', model: 'Fiesta'})
+      setVehicleData({ firstName: 'Gabriel', lastName: 'Varas', plate: searchPlate, brand: 'Ford', model: 'Fiesta'})
     })
   }
 
   return (
     <div>
-      <Header title='Vehículos' description='Aca puedes ver la información sobre los vehículos registrados.'/>
+      <Header title={t('vehicles')} description={t('vehicles_description')}/>
       <main className='w-full mt-4'>
-        <label htmlFor='search_plate' className='font-semibold leading-7'><FontAwesomeIcon icon={faCarSide} /> Buscar vehículo</label>
-        <p className='text-gray-400 leading-6'>Ingresa la placa del vehículo a buscar.</p>
+        <label htmlFor='search_plate' className='font-semibold leading-7'><FontAwesomeIcon icon={faCarSide} /> {t('search_vehicle')}</label>
+        <p className='text-gray-400 leading-6'>{t('search_vehicle_description')}</p>
         <div className='flex gap-2 mt-2'>
           <input type="text" id='search_plate' value={searchPlate} onChange={handleInputChange} placeholder='ej. CLE00000' className='w-4/5 p-2 rounded-lg ring-1 ring-inset ring-gray-700 bg-gray-800 focus:outline-none focus:ring focus:ring-blue-700' />
-          <Button onClick={getVehicleData} icon={faMagnifyingGlass} text='Buscar' width='w-1/5' />
+          <Button onClick={getVehicleData} icon={faMagnifyingGlass} text={t('search')} width='w-1/5' />
         </div>
       </main>
       {vehicleData && <Vehicle data={vehicleData} />}

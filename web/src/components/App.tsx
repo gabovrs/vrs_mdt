@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { debugData } from "../utils/debugData";
-import { fetchNui } from "../utils/fetchNui";
 import Sidebar from './Sidebar';
 import MainContent from './MainContent';
 import { useNuiEvent } from "../hooks/useNuiEvent"
@@ -27,8 +26,8 @@ debugData([
       playersInService: 2,
       minsInService: 10,
       wantedPlayers: [
-        {name: 'Gabriel Varas', reason: 'lorem ipsum aaaaaaaaaaa asdga sdhkasjd hkashdk ahdkhas dkhkasdhkad kjshd kadhsk ahdkjad skj', image: 'https://cdn.discordapp.com/attachments/1055670950735138866/1133178286504161390/image.png'},
-        {name: 'Amaru Salgado', reason: 'no sabe manejar'}
+        {name: 'Gabriel Varas', reason: 'lorem ipsum', image: 'https://cdn.discordapp.com/attachments/1055670950735138866/1133178286504161390/image.png'},
+        {name: 'Amaru Salgado', reason: 'lorem ipsum'}
       ]
     }
   }

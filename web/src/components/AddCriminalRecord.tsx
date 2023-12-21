@@ -6,6 +6,7 @@ import Header from './Header'
 import Select from 'react-select';
 import Button from './Button';
 import { fetchNui } from '../utils/fetchNui';
+import { useTranslation } from 'react-i18next'
 
 const customStyles = {
   control: (provided: any, state: any) => ({
@@ -134,6 +135,7 @@ const crimes: Crime[] = [
 
 
 const AddCriminalRecord = () => {
+  const { t } = useTranslation();
   const { id } = useParams();
   const [expectedFine, setExpectedFine] = useState<number>(0);
   const [expectedJail, setExpectedJail] = useState<number>(0);
@@ -181,12 +183,12 @@ const AddCriminalRecord = () => {
 
   return (
     <div>
-      <Header title='Agregar registro criminal' description='Agregar un registro criminal al ciudadano.' />
+      <Header title={t('add_criminal_record')} description={t('add_criminal_record_description')} />
       <main>
         <form onSubmit={sendFormData}>
           <div className='flex flex-col gap-4 mt-4'>
             <div>
-              <label className='font-semibold leading-6'>Delitos cometidos</label>
+              <label className='font-semibold leading-6'>{t('crimes_committed')}</label>
               <div className='mt-2'>
                 <Select
                   isMulti
@@ -195,31 +197,31 @@ const AddCriminalRecord = () => {
                   classNamePrefix='select'
                   isClearable
                   name='crime'
-                  noOptionsMessage={() => 'No hay opciones'}
-                  placeholder='Selecciona los delitos'
+                  noOptionsMessage={() => 'No options'}
+                  placeholder={t('select_crimes')}
                   options={crimes.map((crime) => ({ value: crime, label: crime.name + ` ($${crime.price}${crime.jail > 0 ? `, ${crime.jail}m` : ``})` }))}
                   onChange={handleSelectChange}
                 />
               </div>
             </div>
             <div>
-              <label className='font-semibold leading-6'>Descripción del suceso</label>
+              <label className='font-semibold leading-6'>{t('event_description')}</label>
               {/* <input type='text' name='description' value={formData.description} onChange={handleInputChange} placeholder='Descripción' required className='w-full mt-2 p-2 rounded-lg ring-1 ring-inset ring-gray-700 bg-gray-800 focus:outline-none focus:ring focus:ring-blue-700' /> */}
-              <textarea name='description' value={formData.description} onChange={handleDescriptionChange} placeholder='Descripción' className='w-full mt-2 p-2 rounded-lg ring-1 ring-inset ring-gray-700 bg-gray-800 focus:outline-none focus:ring focus:ring-blue-700'></textarea>
+              <textarea name='description' value={formData.description} onChange={handleDescriptionChange} placeholder={t('event_description_placeholder')} className='w-full mt-2 p-2 rounded-lg ring-1 ring-inset ring-gray-700 bg-gray-800 focus:outline-none focus:ring focus:ring-blue-700'></textarea>
             </div>
             <div className='grid grid-cols-2 gap-4'>
               <div>
-                <label className='font-semibold leading-6'>Multa {expectedFine > 0 && <span className='font-normal text-gray-400'>(Total recomendado: ${expectedFine})</span>}</label>
+                <label className='font-semibold leading-6'>{t('fine')} {expectedFine > 0 && <span className='font-normal text-gray-400'>{t('expected_prison_time', {expectedFine: expectedFine})}</span>}</label>
                 <input type='number' name='fine' value={formData.fine} onChange={handleInputChange} required className='w-full mt-2 p-2 rounded-lg ring-1 ring-inset ring-gray-700 bg-gray-800 focus:outline-none focus:ring focus:ring-blue-700' />
               </div>
               <div>
-                <label className='font-semibold leading-6'>Tiempo en prisión {expectedJail > 0 && <span className='font-normal text-gray-400'>(Total recomendado: {expectedJail} minutos)</span>}</label>
+                <label className='font-semibold leading-6'>{t('prison_time')} {expectedJail > 0 && <span className='font-normal text-gray-400'>{t('expected_prison_time', {expectedTime: expectedJail})}</span>}</label>
                 <input type='number' name='jail' value={formData.jail} onChange={handleInputChange} required className='w-full mt-2 p-2 rounded-lg ring-1 ring-inset ring-gray-700 bg-gray-800 focus:outline-none focus:ring focus:ring-blue-700' />
               </div>
             </div>
           </div>
           <div className='mt-8'>
-            <Button text='Subir registro criminal' type='submit' icon={faShareFromSquare} />
+            <Button text={t('upload_criminal_record')} type='submit' icon={faShareFromSquare} />
           </div>
         </form>
       </main>

@@ -7,8 +7,10 @@ import Button from './Button'
 import { Link } from 'react-router-dom';
 import { fetchNui } from '../utils/fetchNui'
 import ImageWithFallback from './ImageWithFallback'
+import { useTranslation } from 'react-i18next'
 
 const Dashboard = () => {
+  const { t } = useTranslation();
   const data: any = useContext(DataContext)
 
   const deleteWantedPlayer = (index: number) => {
@@ -17,7 +19,7 @@ const Dashboard = () => {
 
   return (
     <div>
-      <Header title='Inicio' description='Datos personales y de la facción.' />
+      <Header title={t('home')} description={t('home_description')} />
       <main>
         <div className='mt-2'>
           <div className='flex gap-2'>
@@ -29,15 +31,15 @@ const Dashboard = () => {
             <div className='w-3/4 flex items-center justify-center py-6'>
               <div className='grid grid-cols-3 divide-x divide-gray-700 bg-gray-800 border border-gray-700 w-full h-full rounded-lg p-4'>
                 <div className='px-4 py-2'>
-                  <p className='text-gray-400 font-medium'>Colegas en servicio</p>
+                  <p className='text-gray-400 font-medium'>{t('officers_on_duty')}</p>
                   <h1 className='text-3xl font-bold'>{data?.playersInService || '0'}</h1>
                 </div>
                 <div className='px-4 py-2'>
-                  <p className='text-gray-400 font-medium'>Tiempo en servicio</p>
+                  <p className='text-gray-400 font-medium'>{t('time_in_service')}</p>
                   <h1 className='text-3xl font-bold'>{data?.minsInService || '0'} <span className='text-sm text-gray-400 font-medium'>min</span></h1>
                 </div>
                 <div className='px-4 py-2'>
-                  <p className='text-gray-400 font-medium'>En búsqueda y captura</p>
+                  <p className='text-gray-400 font-medium'>{t('wanted_people')}</p>
                   <h1 className='text-3xl font-bold'>{data?.wantedPlayers.length || '0'}</h1>
                 </div>
               </div>
@@ -45,11 +47,11 @@ const Dashboard = () => {
           </div>
           <div className='flex justify-between items-center'>
             <div>
-              <h1 className='font-semibold leading-7'><FontAwesomeIcon icon={faSkullCrossbones} /> Personas en búsqueda</h1>
-              <p className='text-gray-400 leading-6'>Registro de personas que están en búsqueda y captura</p>
+              <h1 className='font-semibold leading-7'><FontAwesomeIcon icon={faSkullCrossbones} /> {t('wanted_people')}</h1>
+              <p className='text-gray-400 leading-6'>{t('wanted_people_description')}</p>
             </div>
             <Link to='/add-wanted'>
-              <Button icon={faSquarePlus} text='Agregar registro' />
+              <Button icon={faSquarePlus} text={t('add_record')} />
             </Link>
           </div>
           {data?.wantedPlayers && data?.wantedPlayers.length > 0 ?
@@ -57,10 +59,10 @@ const Dashboard = () => {
               <table className="table-auto w-full text-left">
                 <thead className='bg-gray-800'>
                   <tr>
-                    <th className='px-4 py-2'>Individuo</th>
-                    <th className='px-4 py-2'>Razón</th>
-                    <th className='px-4 py-2 w-36'>Imagen</th>
-                    <th className='px-4 py-2'>Acción</th>
+                    <th className='px-4 py-2'>{t('individual')}</th>
+                    <th className='px-4 py-2'>{t('reason')}</th>
+                    <th className='px-4 py-2 w-36'>{t('image')}</th>
+                    <th className='px-4 py-2'>{t('action')}</th>
                   </tr>
                 </thead>
                 <tbody className='divide-y divide-gray-800'>
@@ -81,7 +83,7 @@ const Dashboard = () => {
             </div>
             :
             <div className='flex items-center mt-4 justify-center bg-gray-800 h-24 rounded-lg border border-gray-700'>
-              <p className='text-gray-400 font-semibold'>No hay personas en búsqueda y captura.</p>
+              <p className='text-gray-400 font-semibold'>{t('no_wanted_people')}</p>
             </div>
           }
         </div>
