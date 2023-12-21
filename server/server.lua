@@ -1,5 +1,7 @@
 ESX = exports['es_extended']:getSharedObject()
 
+lib.locale()
+
 local wantedPlayers = {}
 
 lib.callback.register('vrs_mdt:isPlayerPolice', function(source)
@@ -9,7 +11,7 @@ end)
 
 lib.callback.register('vrs_mdt:getServerData', function(source)
     local xPlayer = ESX.GetPlayerFromId(source)
-    local playerImage = exports.oxmysql:query_async('SELECT image FROM users WHERE identifier = ?', {xPlayer.getIdentifier()})
+    local playerImage = exports.oxmysql:query_async('SELECT mdt_image FROM users WHERE identifier = ?', {xPlayer.getIdentifier()})
     return {
         playerName = xPlayer.getName(),
         jobGrade = xPlayer.getJob().grade_label,
@@ -31,7 +33,7 @@ lib.callback.register('vrs_mdt:getVehicleByPlate', function(source, plate)
         end
     else
         TriggerClientEvent('ox_lib:notify', source, {
-            description = 'No se encontraron datos.',
+            description = locale('no_data_found'),
             type = 'error'
         })
     end
@@ -40,7 +42,7 @@ end)
 lib.callback.register('vrs_mdt:getCitizenByName', function(source, name)
     local data = {}
     local name = '%' ..name.. '%'
-    local citizenData = exports.oxmysql:query_async('SELECT identifier, firstname, lastname, dateofbirth, sex, image FROM users WHERE CONCAT(firstname, " ", lastname) LIKE ?', {name})
+    local citizenData = exports.oxmysql:query_async('SELECT identifier, firstname, lastname, dateofbirth, sex, mdt_image FROM users WHERE CONCAT(firstname, " ", lastname) LIKE ?', {name})
     if #citizenData > 0 then
         return citizenData
     else
@@ -53,7 +55,7 @@ end)
 
 lib.callback.register('vrs_mdt:getCitizenDetailsByIdentifier', function(source, identifier)
     local data = {}
-    local citizenData = exports.oxmysql:query_async('SELECT identifier, firstname, lastname, dateofbirth, sex, image FROM users WHERE identifier = ?', {identifier})
+    local citizenData = exports.oxmysql:query_async('SELECT identifier, firstname, lastname, dateofbirth, sex, mdt_image FROM users WHERE identifier = ?', {identifier})
     local criminalRecord = exports.oxmysql:query_async('SELECT * FROM mdt_criminal_records WHERE user_id = ?', {identifier})
     if #citizenData > 0 then
         return {
@@ -83,7 +85,7 @@ end)
 
 RegisterServerEvent('vrs_mdt:updateProfileImage', function(data)
     local src = source
-    exports.oxmysql:update('UPDATE users SET image = ? WHERE identifier = ?', {data.image, data.identifier}, function(affectedRows)
+    exports.oxmysql:update('UPDATE users SET mdt_image = ? WHERE identifier = ?', {data.image, data.identifier}, function(affectedRows)
         if affectedRows > 0 then
             TriggerClientEvent('vrs_mdt:updateMDT', src)
         end

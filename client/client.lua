@@ -1,5 +1,7 @@
 local tabletObj = nil
 
+lib.locale()
+
 local function ToggleNuiFrame(shouldShow)
     SetNuiFocus(shouldShow, shouldShow)
     SendReactMessage('setVisible', shouldShow)
