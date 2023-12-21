@@ -19,4 +19,5 @@ server_script "server/**/*.lua"
 files {
 	'web/build/index.html',
 	'web/build/**/*',
+  'locales/*.json'
 }
