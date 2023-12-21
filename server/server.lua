@@ -15,7 +15,7 @@ lib.callback.register('vrs_mdt:getServerData', function(source)
     return {
         playerName = xPlayer.getName(),
         jobGrade = xPlayer.getJob().grade_label,
-        playerImage = playerImage[1].image,
+        playerImage = playerImage[1].mdt_image,
         wantedPlayers = wantedPlayers,
         playersInService = #ESX.GetExtendedPlayers('job', 'police'),
     }
