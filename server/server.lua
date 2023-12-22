@@ -61,7 +61,7 @@ lib.callback.register('vrs_mdt:getCitizenDetailsByIdentifier', function(source, 
     if #citizenData > 0 then
         return {
             identifier = citizenData[1].identifier,
-            image = citizenData[1].image,
+            mdt_image = citizenData[1].mdt_image,
             firstname = citizenData[1].firstname,
             lastname = citizenData[1].lastname,
             dateofbirth = citizenData[1].dateofbirth,
