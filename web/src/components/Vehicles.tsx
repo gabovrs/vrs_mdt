@@ -61,7 +61,7 @@ const Vehicles = () => {
     fetchNui('getVehicleData', { plate: searchPlate }).then(data => {
       setVehicleData(data)
     }).catch(e => {
-      setVehicleData({ firstName: 'Gabriel', lastName: 'Varas', plate: searchPlate, brand: 'Ford', model: 'Fiesta'})
+      // setVehicleData({ firstName: 'Gabriel', lastName: 'Varas', plate: searchPlate, brand: 'Ford', model: 'Fiesta'})
     })
   }
 
