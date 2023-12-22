@@ -83,54 +83,54 @@ interface Crime {
 }
 
 const crimes: Crime[] = [
-  { name: 'Uso abusivo del claxon', price: 250000, jail: 0 },
-  { name: 'Cruzar ilegalmente un paso de cebra', price: 250000, jail: 0 },
-  { name: 'Conducir por el lado equivocado de la carretera', price: 1000000, jail: 0 },
-  { name: 'Giro ilegal en U', price: 1000000, jail: 0 },
-  { name: 'Conducir ilegalmente fuera de carretera', price: 750000, jail: 0 },
-  { name: 'Rechazar una orden legal', price: 4000000, jail: 0 },
-  { name: 'Detener el vehículo en medio de la vía', price: 250000, jail: 0 },
-  { name: 'Estacionar en lugar no apto', price: 200000, jail: 0 },
-  { name: 'No detenerse en una señal de alto', price: 150000, jail: 0 },
-  { name: 'No detenerse en un semáforo en rojo', price: 500000, jail: 0 },
-  { name: 'Conducir un vehículo ilegal', price: 1000000, jail: 0 },
-  { name: 'Chocar e irse a la fuga', price: 3000000, jail: 0 },
-  { name: 'Exceder velocidades de 50 KM/H en zona residencial', price: 200000, jail: 0 },
-  { name: 'Exceder velocidades de 80 KM/H en zona urbana', price: 600000, jail: 0 },
-  { name: 'Exceder velocidades de 120 KM/H en carretera', price: 1250000, jail: 0 },
-  { name: 'Impedir el flujo de tráfico', price: 300000, jail: 0 },
-  { name: 'Beber bebidas alcohólicas en la vía pública', price: 150000, jail: 0 },
-  { name: 'Conducta desordenada', price: 400000, jail: 15 },
-  { name: 'Obstrucción de la justicia', price: 2000000, jail: 20 },
-  { name: 'Insultos hacia civiles', price: 200000, jail: 0 },
-  { name: 'Faltar el respeto a un carabinero', price: 500000, jail: 0 },
-  { name: 'Amenaza verbal hacia un civil', price: 1500000, jail: 0 },
-  { name: 'Amenaza verbal hacia un carabinero', price: 2500000, jail: 15 },
-  { name: 'Proporcionar información falsa poniendo en riesgo vida ajena', price: 750000, jail: 20 },
-  { name: 'Intento de soborno', price: 10000000, jail: 30 },
-  { name: 'Posesión ilegal de arma de alto calibre', price: 25000000, jail: 50 },
-  { name: 'Posesión ilegal de arma de bajo calibre', price: 4000000, jail: 35 },
-  { name: 'Robo de vehículo', price: 8000000, jail: 15 },
-  { name: 'Intento de vender sustancia ilegal', price: 4000000, jail: 20 },
-  { name: 'Fabricación o venta de una sustancia ilegal', price: 3000000, jail: 30 },
-  { name: 'Posesión de una sustancia ilegal [4 unidades o más]', price: 1500000, jail: 10 },
-  { name: 'Secuestro de un civil', price: 13000000, jail: 50 },
-  { name: 'Secuestro de un carabinero', price: 30000000, jail: 60 },
-  { name: 'Robo a mano armada de una tienda', price: 12500000, jail: 20 },
-  { name: 'Robo a mano armada de una joyería', price: 15000000, jail: 30 },
-  { name: 'Robo a mano armada a sucursal bancaria', price: 40000000, jail: 50 },
-  { name: 'Asalto a mano armada a un civil', price: 10000000, jail: 20 },
-  { name: 'Asalto a mano armada a un carabinero', price: 23000000, jail: 30 },
-  { name: 'Homicidio frustrado a un civil', price: 5000000, jail: 30 },
-  { name: 'Homicidio frustrado a un carabinero', price: 15000000, jail: 50 },
-  { name: 'Homicidio en primer grado a un civil', price: 10000000, jail: 60 },
-  { name: 'Homicidio en primer grado a un carabinero', price: 30000000, jail: 90 },
-  { name: 'Fugarse de carabineros', price: 7000000, jail: 15 },
-  { name: 'Posesión de dinero negro (mas de 5 millones)', price: 10000000, jail: 5 },
-  { name: 'Acumulación de multas de delitos (mas de 10 millones)', price: 1000000, jail: 5 },
-  { name: 'Agresión Física a un carabiner', price: 5000000, jail: 15 },
-  { name: 'Estafa inferior o igual a 40.000.000', price: 35000000, jail: 40 },
-  { name: 'Estafa superior a 40.000.000', price: 50000000, jail: 40 },
+  { name: 'crimes_names.abusive_horn_use', price: 250000, jail: 0 },
+  { name: 'crimes_names.illegal_crosswalk_crossing', price: 250000, jail: 0 },
+  { name: 'crimes_names.wrong_way_driving', price: 1000000, jail: 0 },
+  { name: 'crimes_names.illegal_u_turn', price: 1000000, jail: 0 },
+  { name: 'crimes_names.offroad_driving', price: 750000, jail: 0 },
+  { name: 'crimes_names.refusing_legal_order', price: 4000000, jail: 0 },
+  { name: 'crimes_names.vehicle_blocking_way', price: 250000, jail: 0 },
+  { name: 'crimes_names.illegal_parking', price: 200000, jail: 0 },
+  { name: 'crimes_names.running_stop_sign', price: 150000, jail: 0 },
+  { name: 'crimes_names.running_red_light', price: 500000, jail: 0 },
+  { name: 'crimes_names.driving_illegal_vehicle', price: 1000000, jail: 0 },
+  { name: 'crimes_names.hit_and_run', price: 3000000, jail: 0 },
+  { name: 'crimes_names.speeding_50_residential', price: 200000, jail: 0 },
+  { name: 'crimes_names.speeding_80_urban', price: 600000, jail: 0 },
+  { name: 'crimes_names.speeding_120_highway', price: 1250000, jail: 0 },
+  { name: 'crimes_names.traffic_flow_obstruction', price: 300000, jail: 0 },
+  { name: 'crimes_names.public_alcohol_consumption', price: 150000, jail: 0 },
+  { name: 'crimes_names.disorderly_conduct', price: 400000, jail: 15 },
+  { name: 'crimes_names.obstruction_of_justice', price: 2000000, jail: 20 },
+  { name: 'crimes_names.insulting_civilians', price: 200000, jail: 0 },
+  { name: 'crimes_names.disrespecting_officer', price: 500000, jail: 0 },
+  { name: 'crimes_names.verbal_threat_to_civilian', price: 1500000, jail: 0 },
+  { name: 'crimes_names.verbal_threat_to_officer', price: 2500000, jail: 15 },
+  { name: 'crimes_names.false_information_endangering', price: 750000, jail: 20 },
+  { name: 'crimes_names.bribery_attempt', price: 10000000, jail: 30 },
+  { name: 'crimes_names.illegal_high_caliber_weapon', price: 25000000, jail: 50 },
+  { name: 'crimes_names.illegal_low_caliber_weapon', price: 4000000, jail: 35 },
+  { name: 'crimes_names.vehicle_theft', price: 8000000, jail: 15 },
+  { name: 'crimes_names.illegal_substance_sale_attempt', price: 4000000, jail: 20 },
+  { name: 'crimes_names.substance_manufacturing_or_sale', price: 3000000, jail: 30 },
+  { name: 'crimes_names.illegal_substance_possession', price: 1500000, jail: 10 },
+  { name: 'crimes_names.civilian_kidnapping', price: 13000000, jail: 50 },
+  { name: 'crimes_names.officer_kidnapping', price: 30000000, jail: 60 },
+  { name: 'crimes_names.armed_robbery_store', price: 12500000, jail: 20 },
+  { name: 'crimes_names.armed_robbery_jewelry', price: 15000000, jail: 30 },
+  { name: 'crimes_names.armed_robbery_bank', price: 40000000, jail: 50 },
+  { name: 'crimes_names.armed_assault_civilian', price: 10000000, jail: 20 },
+  { name: 'crimes_names.armed_assault_officer', price: 23000000, jail: 30 },
+  { name: 'crimes_names.attempted_homicide_civilian', price: 5000000, jail: 30 },
+  { name: 'crimes_names.attempted_homicide_officer', price: 15000000, jail: 50 },
+  { name: 'crimes_names.first_degree_murder_civilian', price: 10000000, jail: 60 },
+  { name: 'crimes_names.first_degree_murder_officer', price: 30000000, jail: 90 },
+  { name: 'crimes_names.fleeing_officers', price: 7000000, jail: 15 },
+  { name: 'crimes_names.black_money_possession', price: 10000000, jail: 5 },
+  { name: 'crimes_names.crime_fine_accumulation', price: 1000000, jail: 5 },
+  { name: 'crimes_names.physical_assault_officer', price: 5000000, jail: 15 },
+  { name: 'crimes_names.fraud_under_40_million', price: 35000000, jail: 40 },
+  { name: 'crimes_names.fraud_over_40_million', price: 50000000, jail: 40 }
 ];
 
 
@@ -199,7 +199,7 @@ const AddCriminalRecord = () => {
                   name='crime'
                   noOptionsMessage={() => 'No options'}
                   placeholder={t('select_crimes')}
-                  options={crimes.map((crime) => ({ value: crime, label: crime.name + ` ($${crime.price}${crime.jail > 0 ? `, ${crime.jail}m` : ``})` }))}
+                  options={crimes.map((crime) => ({ value: crime, label: t(crime.name) + ` ($${crime.price}${crime.jail > 0 ? `, ${crime.jail}m` : ``})` }))}
                   onChange={handleSelectChange}
                 />
               </div>
@@ -211,7 +211,7 @@ const AddCriminalRecord = () => {
             </div>
             <div className='grid grid-cols-2 gap-4'>
               <div>
-                <label className='font-semibold leading-6'>{t('fine')} {expectedFine > 0 && <span className='font-normal text-gray-400'>{t('expected_prison_time', {expectedFine: expectedFine})}</span>}</label>
+                <label className='font-semibold leading-6'>{t('fine')} {expectedFine > 0 && <span className='font-normal text-gray-400'>{t('expected_fine', {expectedFine: expectedFine})}</span>}</label>
                 <input type='number' name='fine' value={formData.fine} onChange={handleInputChange} required className='w-full mt-2 p-2 rounded-lg ring-1 ring-inset ring-gray-700 bg-gray-800 focus:outline-none focus:ring focus:ring-blue-700' />
               </div>
               <div>
