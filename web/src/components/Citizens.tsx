@@ -10,7 +10,7 @@ import { useTranslation } from 'react-i18next'
 
 interface CitizenData {
   identifier: string,
-  image: string,
+  mdt_image: string,
   firstname: string,
   lastname: string,
   dateofbirth: string,
@@ -36,7 +36,7 @@ const Citizen = ({ data }: { data: CitizenData[] }) => {
             data.map((citizen, index) => (
               <tr key={index}>
                 <td className='px-4 py-2'>
-                  <ImageWithFallback src={citizen.image} rounded='full' icon={faUser} />
+                  <ImageWithFallback src={citizen.mdt_image} rounded='full' icon={faUser} />
                 </td>
                 <td className='px-4 py-2'>{citizen.firstname} {citizen.lastname}</td>
                 <td className='px-4 py-2'>{citizen.dateofbirth}</td>
@@ -73,14 +73,14 @@ const Citizens = () => {
     fetchNui('getCitizenData', { name: searchName }).then(data => {
       setCitizenData(data)
     }).catch(e => {
-      setCitizenData([{
-        identifier: 'customidentifier',
-        image: '',
-        firstname: 'Gabriel',
-        lastname: 'Varas',
-        dateofbirth: '10-10-2023',
-        sex: 'm'
-      }])
+      // setCitizenData([{
+      //   identifier: 'customidentifier',
+      //   mdt_image: '',
+      //   firstname: 'Gabriel',
+      //   lastname: 'Varas',
+      //   dateofbirth: '10-10-2023',
+      //   sex: 'm'
+      // }])
     })
   }
 

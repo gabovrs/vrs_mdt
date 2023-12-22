@@ -19,7 +19,7 @@ interface CriminalRecord {
 
 interface CitizenData {
   identifier: any
-  image: string
+  mdt_image: string
   firstname: string
   lastname: string
   dateofbirth: string
@@ -33,7 +33,7 @@ const ManageCitizen = () => {
   const [citizenData, setCitizenData] = useState<CitizenData | null>(null);
 
   const updateProfileImage = () => {
-    fetchNui('updateProfileImage', { identifier: id, image: citizenData?.image  })
+    fetchNui('updateProfileImage', { identifier: id, image: citizenData?.mdt_image  })
   }
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -47,31 +47,32 @@ const ManageCitizen = () => {
   useEffect(() => {
     fetchNui('getCitizenDetails', { identifier: id }).then(data => {
       setCitizenData(data);
+      console.log('citizendata', data)
     }).catch(e => {
-      setCitizenData({
-        identifier: id,
-        image: '',
-        firstname: 'Gabriel',
-        lastname: 'Varas',
-        dateofbirth: '11-11-2023',
-        sex: 'm',
-        criminalRecord: [
-          {
-            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.',
-            fine: 200,
-            crimes: ['["Crimen name"]'],
-            jail: 10,
-            date: 'string',
-          },
-          {
-            description: 'Lorem ipsum dolor sit amet, consectetur.',
-            fine: 200,
-            crimes: ['["Crimen name"]'],
-            jail: 10,
-            date: 'string',
-          }
-        ]
-      })
+      // setCitizenData({
+      //   identifier: id,
+      //   mdt_image: '',
+      //   firstname: 'Gabriel',
+      //   lastname: 'Varas',
+      //   dateofbirth: '11-11-2023',
+      //   sex: 'm',
+      //   criminalRecord: [
+      //     {
+      //       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.',
+      //       fine: 200,
+      //       crimes: ['["Crimen name"]'],
+      //       jail: 10,
+      //       date: 'string',
+      //     },
+      //     {
+      //       description: 'Lorem ipsum dolor sit amet, consectetur.',
+      //       fine: 200,
+      //       crimes: ['["Crimen name"]'],
+      //       jail: 10,
+      //       date: 'string',
+      //     }
+      //   ]
+      // })
     });
   }, [id]);
 
@@ -81,9 +82,9 @@ const ManageCitizen = () => {
         <Header title={t('manage_citizen')} description={t('manage_citizen_description', {firstname: citizenData?.firstname, lastname: citizenData?.lastname})} />
         <main className='flex gap-4 mt-2'>
           <div className='w-1/3'>
-            <ImageWithFallback src={citizenData.image} />
+            <ImageWithFallback src={citizenData.mdt_image} />
             <div className='flex mt-2 gap-2'>
-              <input type='text' name='image' placeholder={t('image_url_placeholder')} value={citizenData.image} onChange={handleInputChange} className='w-4/5 p-2 rounded-lg ring-1 ring-inset ring-gray-700 bg-gray-800 focus:outline-none focus:ring focus:ring-blue-700' />
+              <input type='text' name='image' placeholder={t('image_url_placeholder')} value={citizenData.mdt_image} onChange={handleInputChange} className='w-4/5 p-2 rounded-lg ring-1 ring-inset ring-gray-700 bg-gray-800 focus:outline-none focus:ring focus:ring-blue-700' />
               <Button width='w-1/5' icon={faFloppyDisk} onClick={updateProfileImage} />
             </div>
           </div>
