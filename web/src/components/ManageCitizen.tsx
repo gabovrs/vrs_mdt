@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTable, faSquarePlus, faFloppyDisk } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom'
 import Button from './Button'
-import { useTranslation } from 'react-i18next'
+import { Locale } from '../utils/locale';
 
 interface CriminalRecord {
   description: string
@@ -28,7 +28,6 @@ interface CitizenData {
 }
 
 const ManageCitizen = () => {
-  const { t } = useTranslation();
   const { id } = useParams();
   const [citizenData, setCitizenData] = useState<CitizenData | null>(null);
 
@@ -79,35 +78,35 @@ const ManageCitizen = () => {
   return (
     citizenData ? (
       <div>
-        <Header title={t('manage_citizen')} description={t('manage_citizen_description', {firstname: citizenData?.firstname, lastname: citizenData?.lastname})} />
+        <Header title={Locale.ui_manage_citizen} description={Locale.ui_manage_citizen_description + citizenData?.firstname + ' ' + citizenData?.lastname} />
         <main className='flex gap-4 mt-2'>
           <div className='w-1/3'>
             <ImageWithFallback src={citizenData.mdt_image} />
             <div className='flex mt-2 gap-2'>
-              <input type='text' name='image' placeholder={t('image_url_placeholder')} value={citizenData.mdt_image} onChange={handleInputChange} className='w-4/5 p-2 rounded-lg ring-1 ring-inset ring-gray-700 bg-gray-800 focus:outline-none focus:ring focus:ring-blue-700' />
+              <input type='text' name='image' placeholder={Locale.ui_image_url_placeholder} value={citizenData.mdt_image} onChange={handleInputChange} className='w-4/5 p-2 rounded-lg ring-1 ring-inset ring-gray-700 bg-gray-800 focus:outline-none focus:ring focus:ring-blue-700' />
               <Button width='w-1/5' icon={faFloppyDisk} onClick={updateProfileImage} />
             </div>
           </div>
           <div className='w-full'>
             <div className='p-4 rounded-lg border border-gray-800'>
-              <h1 className='text-base font-semibold text-white-100 leading-7'><FontAwesomeIcon icon={faTable} /> {t('citizen_data')}</h1>
-              <p className='text-gray-400 leading-6'>{t('citizen_data_description')}</p>
+              <h1 className='text-base font-semibold text-white-100 leading-7'><FontAwesomeIcon icon={faTable} /> {Locale.ui_citizen_data}</h1>
+              <p className='text-gray-400 leading-6'>{Locale.ui_citizen_data_description}</p>
               <div className='mt-2 border-t border-gray-800'>
                 <dl className='divide-y divide-gray-800'>
                   <div className='py-3 grid grid-cols-2'>
-                    <dt className='text-sm font-medium'>{t('identifier')}</dt>
+                    <dt className='text-sm font-medium'>{Locale.ui_identifier}</dt>
                     <dd className='text-sm text-gray-400'>{citizenData.identifier}</dd>
                   </div>
                   <div className='py-3 grid grid-cols-2'>
-                    <dt className='text-sm font-medium'>{t('firstname')}</dt>
+                    <dt className='text-sm font-medium'>{Locale.ui_firstname}</dt>
                     <dd className='text-sm text-gray-400'>{citizenData.firstname}</dd>
                   </div>
                   <div className='py-3 grid grid-cols-2'>
-                    <dt className='text-sm font-medium'>{t('lastname')}</dt>
+                    <dt className='text-sm font-medium'>{Locale.ui_lastname}</dt>
                     <dd className='text-sm text-gray-400'>{citizenData.lastname}</dd>
                   </div>
                   <div className='py-3 grid grid-cols-2'>
-                    <dt className='text-sm font-medium'>{t('birthday')}</dt>
+                    <dt className='text-sm font-medium'>{Locale.ui_birthday}</dt>
                     <dd className='text-sm text-gray-400'>{citizenData.dateofbirth}</dd>
                   </div>
                 </dl>
@@ -117,11 +116,11 @@ const ManageCitizen = () => {
         </main>
         <div className='flex justify-between items-center mt-4'>
           <div>
-            <h1 className='font-semibold leading-7'><FontAwesomeIcon icon={faTable} /> {t('criminal_record')}</h1>
-            <p className='text-gray-400 leading-6'>{t('criminal_record_description', {firstname: citizenData?.firstname, lastname: citizenData?.lastname})}</p>
+            <h1 className='font-semibold leading-7'><FontAwesomeIcon icon={faTable} /> {Locale.ui_criminal_record}</h1>
+            <p className='text-gray-400 leading-6'>{Locale.ui_criminal_record_description + citizenData?.firstname + ' ' + citizenData?.lastname}</p>
           </div>
           <Link to={`/add-criminal-record/${citizenData.identifier}`}>
-            <Button icon={faSquarePlus} text={t('add_criminal_record')} />
+            <Button icon={faSquarePlus} text={Locale.ui_add_criminal_record} />
           </Link>
         </div>
         {citizenData.criminalRecord.length > 0 ? (
@@ -129,11 +128,11 @@ const ManageCitizen = () => {
             <table className='table-auto border-collapse w-full text-left'>
               <thead className='bg-gray-800'>
                 <tr>
-                  <th className='px-4 py-2'>{t('description')}</th>
-                  <th className='px-4 py-2'>{t('fine')}</th>
-                  <th className='px-4 py-2'>{t('crimes')}</th>
-                  <th className='px-4 py-2'>{t('sentence')}</th>
-                  <th className='px-4 py-2'>{t('date')}</th>
+                  <th className='px-4 py-2'>{Locale.ui_description}</th>
+                  <th className='px-4 py-2'>{Locale.ui_fine}</th>
+                  <th className='px-4 py-2'>{Locale.ui_crimes}</th>
+                  <th className='px-4 py-2'>{Locale.ui_sentence}</th>
+                  <th className='px-4 py-2'>{Locale.ui_date}</th>
                 </tr>
               </thead>
               <tbody className='divide-y divide-gray-800'>
@@ -148,7 +147,7 @@ const ManageCitizen = () => {
                         ))}
                       </ul>
                     </td>
-                    <td className='px-4 py-2 text-gray-400'>{data.jail > 0 ? `${data.jail}m` : t('no_sentence')}</td>
+                    <td className='px-4 py-2 text-gray-400'>{data.jail > 0 ? `${data.jail}m` : Locale.ui_no_sentence}</td>
                     <td className='px-4 py-2 text-gray-400'>{new Date(data.created_at).toLocaleDateString('es-ES')}</td>
                   </tr>
                 ))}
@@ -157,7 +156,7 @@ const ManageCitizen = () => {
           </div>
         ) : (
           <div className='flex items-center mt-4 justify-center bg-gray-800 h-24 rounded-lg border border-gray-700'>
-            <p className='text-gray-400 font-semibold'>{t('no_criminal_record')}</p>
+            <p className='text-gray-400 font-semibold'>{Locale.ui_no_criminal_record}</p>
           </div>
         )
         }
@@ -165,7 +164,7 @@ const ManageCitizen = () => {
     )
       : (
         <div>
-          {t('loading')}
+          {Locale.ui_loading}
         </div>
       )
   )

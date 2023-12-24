@@ -2,10 +2,9 @@ import React, { useContext, useState } from 'react'
 import Section from './Section'
 import { faHouse, faCarSide, faPerson } from '@fortawesome/free-solid-svg-icons'
 import DataContext from './DataContext'
-import { useTranslation } from 'react-i18next'
+import { Locale } from '../utils/locale';
 
 const Sidebar = () => {
-  const { t } = useTranslation();
   const data: any = useContext(DataContext)
 
   return (
@@ -20,9 +19,9 @@ const Sidebar = () => {
         <p className='text-center text-sm text-gray-400 font-medium'>{data?.jobGrade}</p>
       </header>
       <ul className='font-semibold text-gray-400 px-2 space-y-2'>
-        <Section title={t('home')} icon={faHouse} link='/'/>
-        <Section title={t('vehicles')} icon={faCarSide} link='/vehicles'/>
-        <Section title={t('citizens')} icon={faPerson} link='/citizens'/>
+        <Section title={Locale.ui_home} icon={faHouse} link='/'/>
+        <Section title={Locale.ui_vehicles} icon={faCarSide} link='/vehicles'/>
+        <Section title={Locale.ui_citizens} icon={faPerson} link='/citizens'/>
       </ul>
     </div>
   )

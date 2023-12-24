@@ -4,8 +4,10 @@ import { debugData } from "../utils/debugData";
 import Sidebar from './Sidebar';
 import MainContent from './MainContent';
 import { useNuiEvent } from "../hooks/useNuiEvent"
+import { fetchNui } from '../utils/fetchNui';
 import DataContext from './DataContext';
 import frame from '../images/frame.png';
+import { Locale } from '../utils/locale';
 
 // This will set the NUI to visible if we are
 // developing in browser
@@ -13,6 +15,15 @@ debugData([
   {
     action: 'setVisible',
     data: true,
+  }
+])
+
+debugData([
+  {
+    action: 'setupMDT',
+    data: {
+      language: 'es',
+    },
   }
 ])
 
@@ -35,7 +46,13 @@ debugData([
 
 const App: React.FC = () => {
   const [data, setData] = useState(null)
+
+  fetchNui('uiLoaded');
   useNuiEvent('setData', setData)
+  useNuiEvent('setupMDT', ({ locales }) => {
+    for (const key in locales) Locale[key] = locales[key]
+  })
+  
   return (
     <Router>
       <div className='flex items-center justify-center h-screen'>

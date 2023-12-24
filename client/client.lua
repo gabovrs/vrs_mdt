@@ -1,4 +1,5 @@
 local tabletObj = nil
+local uiLoaded = false
 
 lib.locale()
 
@@ -35,6 +36,22 @@ function UpdateMDT()
     data.minsInService = math.floor(GetGameTimer()/1000/60)
     SendReactMessage('setData', data)
 end
+
+Citizen.CreateThread(function()
+    local locales = lib.getLocales()
+    local uiLocales = {}
+    for k, v in pairs(locales) do
+		if k:find('^ui_')then
+			uiLocales[k] = v
+		end
+	end
+    local data = {
+        locales = uiLocales
+    }
+
+    while not uiLoaded do Wait(100) end
+    SendReactMessage('setupMDT', data)
+end)
 
 RegisterNetEvent('vrs_mdt:UpdateMDT', function(data)
     UpdateMDT()
@@ -100,6 +117,10 @@ RegisterNUICallback('updateProfileImage', function(data, cb)
         description = locale('updated_image'),
         type = 'success',
     })
+end)
+
+RegisterNUICallback('uiLoaded', function(data, cb)
+	uiLoaded = true
 end)
 
 exports('showMDT', ShowMDT)

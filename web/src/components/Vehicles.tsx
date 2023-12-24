@@ -4,32 +4,30 @@ import { faMagnifyingGlass, faCarSide, faTable } from '@fortawesome/free-solid-s
 import { fetchNui } from '../utils/fetchNui'
 import Header from './Header'
 import Button from './Button'
-import { useTranslation } from 'react-i18next'
+import { Locale } from '../utils/locale';
 
-const Vehicle = ({ data }:any) => {
-  const { t } = useTranslation();
-
+const Vehicle = ({ data }: any) => {
   return (
     <div className='mt-4'>
       <div className='w-full p-4 rounded-lg border border-gray-800'>
-        <h1 className='text-base font-semibold text-white-100 leading-7'><FontAwesomeIcon icon={faTable}/> {t('vehicle_data')}</h1>
-        <p className='text-gray-400 leading-6'>{t('vehicle_data_description')}</p>
+        <h1 className='text-base font-semibold text-white-100 leading-7'><FontAwesomeIcon icon={faTable} /> {Locale.ui_vehicle_data}</h1>
+        <p className='text-gray-400 leading-6'>{Locale.ui_vehicle_data_description}</p>
         <div className='mt-2 border-t border-gray-800'>
           <dl className='divide-y divide-gray-800'>
             <div className="py-3 grid grid-cols-2">
-              <dt className="text-sm font-medium">{t('plate')}</dt>
+              <dt className="text-sm font-medium">{Locale.ui_plate}</dt>
               <dd className="text-sm text-gray-400">{data.plate}</dd>
             </div>
             <div className="py-3 grid grid-cols-2">
-              <dt className="text-sm font-medium">{t('owner')}</dt>
+              <dt className="text-sm font-medium">{Locale.ui_owner}</dt>
               <dd className="text-sm text-gray-400">{data.firstName} {data.lastName}</dd>
             </div>
             <div className="py-3 grid grid-cols-2">
-              <dt className="text-sm font-medium">{t('brand')}</dt>
+              <dt className="text-sm font-medium">{Locale.ui_brand}</dt>
               <dd className="text-sm text-gray-400">{data.brand}</dd>
             </div>
             <div className="py-3 grid grid-cols-2">
-              <dt className="text-sm font-medium">{t('model')}</dt>
+              <dt className="text-sm font-medium">{Locale.ui_model}</dt>
               <dd className="text-sm text-gray-400">{data.model}</dd>
             </div>
           </dl>
@@ -48,7 +46,6 @@ interface VehicleData {
 }
 
 const Vehicles = () => {
-  const { t } = useTranslation();
   const [searchPlate, setSearchPlate] = useState<string>('');
   const [vehicleData, setVehicleData] = useState<VehicleData | null>(null);
 
@@ -67,13 +64,13 @@ const Vehicles = () => {
 
   return (
     <div>
-      <Header title={t('vehicles')} description={t('vehicles_description')}/>
+      <Header title={Locale.ui_vehicles} description={Locale.ui_vehicles_description} />
       <main className='w-full mt-4'>
-        <label htmlFor='search_plate' className='font-semibold leading-7'><FontAwesomeIcon icon={faCarSide} /> {t('search_vehicle')}</label>
-        <p className='text-gray-400 leading-6'>{t('search_vehicle_description')}</p>
+        <label htmlFor='search_plate' className='font-semibold leading-7'><FontAwesomeIcon icon={faCarSide} /> {Locale.ui_search_vehicle}</label>
+        <p className='text-gray-400 leading-6'>{Locale.ui_search_vehicle_description}</p>
         <div className='flex gap-2 mt-2'>
           <input type="text" id='search_plate' value={searchPlate} onChange={handleInputChange} placeholder='ej. CLE00000' className='w-4/5 p-2 rounded-lg ring-1 ring-inset ring-gray-700 bg-gray-800 focus:outline-none focus:ring focus:ring-blue-700' />
-          <Button onClick={getVehicleData} icon={faMagnifyingGlass} text={t('search')} width='w-1/5' />
+          <Button onClick={getVehicleData} icon={faMagnifyingGlass} text={Locale.ui_search} width='w-1/5' />
         </div>
       </main>
       {vehicleData && <Vehicle data={vehicleData} />}
