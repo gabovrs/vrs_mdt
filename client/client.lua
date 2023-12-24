@@ -58,8 +58,11 @@ RegisterNetEvent('vrs_mdt:UpdateMDT', function(data)
 end)
 
 RegisterNetEvent('vrs_mdt:sendBill', function(target, society, label, fine)
-    -- print(target, society, label, fine, type(fine))
     TriggerServerEvent('esx_billing:sendBill', target, society, label, fine)
+end)
+
+RegisterNetEvent('vrs_mdt:showMDT', function()
+    ShowMDT()
 end)
 
 RegisterNUICallback('hideFrame', function(_, cb)

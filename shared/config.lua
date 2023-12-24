@@ -1,5 +1,13 @@
 Config = {}
 
+Config.PoliceJobs = {'police'}
+
+Config.Command = {
+    Enabled = true,
+    Name = 'showmdt',
+    ItemName = 'mdt' --set to false to disable item checking
+}
+
 Config.Tablet = {
     AnimDict = 'amb@code_human_in_bus_passenger_idles@female@tablet@base',
     AnimName = 'base',
