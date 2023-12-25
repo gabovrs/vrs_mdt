@@ -124,6 +124,7 @@ end)
 
 RegisterNUICallback('uiLoaded', function(data, cb)
 	uiLoaded = true
+    cb(1)
 end)
 
 exports('showMDT', ShowMDT)

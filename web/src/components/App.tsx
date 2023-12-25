@@ -47,7 +47,7 @@ debugData([
 const App: React.FC = () => {
   const [data, setData] = useState(null)
 
-  fetchNui('uiLoaded');
+  fetchNui('uiLoaded', {});
   useNuiEvent('setData', setData)
   useNuiEvent('setupMDT', ({ locales }) => {
     for (const key in locales) Locale[key] = locales[key]
