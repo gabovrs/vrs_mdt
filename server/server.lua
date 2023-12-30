@@ -11,13 +11,17 @@ end)
 
 lib.callback.register('vrs_mdt:getServerData', function(source)
     local xPlayer = ESX.GetPlayerFromId(source)
+    local playersInService = 0
+    for _, jobName in pairs(Config.PoliceJobs) do
+        playersInService = playersInService + #ESX.GetExtendedPlayers('job', jobName)
+    end
     local playerImage = exports.oxmysql:query_async('SELECT mdt_image FROM users WHERE identifier = ?', {xPlayer.getIdentifier()})
     return {
         playerName = xPlayer.getName(),
         jobGrade = xPlayer.getJob().grade_label,
         playerImage = playerImage[1].mdt_image,
         wantedPlayers = wantedPlayers,
-        playersInService = #ESX.GetExtendedPlayers('job', 'police'),
+        playersInService = playersInService,
     }
 end)
 
