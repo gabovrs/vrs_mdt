@@ -19,9 +19,9 @@ const Sidebar = () => {
         <p className='text-center text-sm text-gray-400 font-medium'>{data?.jobGrade}</p>
       </header>
       <ul className='font-semibold text-gray-400 px-2 space-y-2'>
-        <Section title={Locale.ui_home} icon={faHouse} link='/'/>
-        <Section title={Locale.ui_vehicles} icon={faCarSide} link='/vehicles'/>
-        <Section title={Locale.ui_citizens} icon={faPerson} link='/citizens'/>
+        <Section title={Locale.ui_home || 'ui_home'} icon={faHouse} link='/'/>
+        <Section title={Locale.ui_vehicles || 'ui_vehicles'} icon={faCarSide} link='/vehicles'/>
+        <Section title={Locale.ui_citizens || 'ui_citizens'} icon={faPerson} link='/citizens'/>
       </ul>
     </div>
   )
