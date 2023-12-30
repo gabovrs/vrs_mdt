@@ -9,7 +9,7 @@ import AddCriminalRecord from './AddCriminalRecord';
 
 function MainContent() {
   return (
-    <div className="bg-gray-900 w-full h-full p-6">
+    <div className="bg-gray-900 w-full h-full p-6 overflow-auto">
       <Routes>
         {/* Ruta por defecto */}
         <Route path="*" element={<Dashboard/>} />
