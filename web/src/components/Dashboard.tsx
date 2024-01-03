@@ -12,8 +12,8 @@ import { Locale } from '../utils/locale'
 const Dashboard = () => {
   const data: any = useContext(DataContext)
 
-  const deleteWantedPlayer = (index: number) => {
-    fetchNui('removeWantedPlayer', index)
+  const deleteWantedPlayer = (index: number, id: number) => {
+    fetchNui('removeWantedPlayer', {index, id})
   }
 
   return (
@@ -56,7 +56,7 @@ const Dashboard = () => {
           {data?.wantedPlayers && data?.wantedPlayers.length > 0 ?
             <div className='rounded-lg overflow-x-auto mt-4'>
               <table className="table-auto w-full text-left">
-                <thead className='bg-gray-700'>
+                <thead className='bg-gray-700 text-gray-400'>
                   <tr>
                     <th className='px-4 py-2'>{Locale.ui_individual || 'ui_individual'}</th>
                     <th className='px-4 py-2'>{Locale.ui_reason || 'ui_reason'}</th>
@@ -73,7 +73,7 @@ const Dashboard = () => {
                         <ImageWithFallback src={data.image} />
                       </td>
                       <td className='px-4 py-2'>
-                        <Button icon={faTrash} onClick={() => deleteWantedPlayer(index)} />
+                        <Button icon={faTrash} onClick={() => deleteWantedPlayer(index, data.id)} />
                       </td>
                     </tr>
                   ))}

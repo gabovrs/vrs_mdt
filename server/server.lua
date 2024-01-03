@@ -100,10 +100,12 @@ end
 
 RegisterServerEvent('vrs_mdt:addWantedPlayer', function(data)
     table.insert(wantedPlayers, data)
+    exports.oxmysql:insert('INSERT INTO `mdt_wanted_players` (name, reason, image) VALUES (?, ?, ?)', {data.name, data.reason, data.image})
 end)
 
-RegisterServerEvent('vrs_mdt:removeWantedPlayer', function(index)
-    table.remove(wantedPlayers, index+1)
+RegisterServerEvent('vrs_mdt:removeWantedPlayer', function(data)
+    table.remove(wantedPlayers, data.index+1)
+    exports.oxmysql:query_async('DELETE FROM mdt_wanted_players WHERE id = ?', {data.id})
 end)
 
 RegisterServerEvent('vrs_mdt:updateProfileImage', function(data)
@@ -136,4 +138,9 @@ RegisterServerEvent('vrs_mdt:addCriminalRecord', function(data)
     exports.oxmysql:insert('INSERT INTO `mdt_criminal_records` (user_id, officer_id, description, crimes, fine, jail) VALUES (?, ?, ?, ?, ?, ?)', {
         data.user_id, xPlayer.getIdentifier(), data.description, json.encode(crimes), data.fine, data.jail
     })
+end)
+
+
+Citizen.CreateThread(function()
+    wantedPlayers = exports.oxmysql:query_async('SELECT * FROM `mdt_wanted_players`')
 end)
