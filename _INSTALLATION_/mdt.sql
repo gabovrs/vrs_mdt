@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS `mdt_wanted_players` (
   `image` longtext DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`)
-)
+);
 
-ALTER TABLE users
-ADD COLUMN mdt_image VARCHAR(255);
+ALTER TABLE `users`
+ADD COLUMN `mdt_image` VARCHAR(255) DEFAULT NULL;
