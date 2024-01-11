@@ -1,8 +1,8 @@
 fx_version 'cerulean'
 game 'gta5'
 
-author 'VRS'
-description 'Simple MDT system'
+author 'noway'
+description 'Tablet della polizia (restyle noway)'
 version 'v1.4.0'
 lua54 'yes'
 
