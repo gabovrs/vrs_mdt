@@ -8,6 +8,7 @@ import { fetchNui } from '../utils/fetchNui';
 import DataContext from './DataContext';
 import frame from '../images/frame.png';
 import { Locale } from '../utils/locale';
+import { Fine } from '../utils/fine';
 
 // This will set the NUI to visible if we are
 // developing in browser
@@ -49,8 +50,9 @@ const App: React.FC = () => {
 
   fetchNui('uiLoaded', {});
   useNuiEvent('setData', setData)
-  useNuiEvent('setupMDT', ({ locales }) => {
+  useNuiEvent('setupMDT', ({ locales, fines }) => {
     for (const key in locales) Locale[key] = locales[key]
+    Fine.push(...fines)
   })
   
   return (

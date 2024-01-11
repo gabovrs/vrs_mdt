@@ -1,6 +1,5 @@
 ESX = exports['es_extended']:getSharedObject()
 
-lib.locale()
 lib.versionCheck('gabovrs/vrs_mdt')
 
 local wantedPlayers = {}
@@ -124,14 +123,16 @@ RegisterServerEvent('vrs_mdt:addCriminalRecord', function(data)
     crimes = {}
 
     for k, v in pairs(data.crimes) do
-        table.insert(crimes, v.name)
+        table.insert(crimes, v.label)
     end
 
+    local crimesLabel = table.concat(crimes, ', ')
+
     if xTarget then
-        TriggerClientEvent('vrs_mdt:sendBill', xPlayer.source, xTarget.source, 'society_police', json.encode(crimes), data.fine)
-    else
+        TriggerClientEvent('vrs_mdt:sendBill', xPlayer.source, xTarget.source, 'society_police', crimesLabel, data.fine)
+    elseif data.fine > 0 then
         exports.oxmysql:insert('INSERT INTO `billing` (identifier, sender, target_type, target, label, amount) VALUES (?, ?, ?, ?, ?, ?)', {
-            data.user_id, xPlayer.getIdentifier(), 'society', 'society_police', json.encode(crimes), data.fine
+            data.user_id, xPlayer.getIdentifier(), 'society', 'society_police', crimesLabel, data.fine
         })
     end
 

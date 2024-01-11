@@ -46,7 +46,6 @@ const ManageCitizen = () => {
   useEffect(() => {
     fetchNui('getCitizenDetails', { identifier: id }).then(data => {
       setCitizenData(data);
-      console.log('citizendata', data)
     }).catch(e => {
       // setCitizenData({
       //   identifier: id,
@@ -139,7 +138,7 @@ const ManageCitizen = () => {
                 {citizenData.criminalRecord.map((data: any, index: number) => (
                   <tr key={index} >
                     <td className='px-4 py-2 text-gray-400'>{data.description}</td>
-                    <td className='px-4 py-2 text-gray-400'>{data.fine}</td>
+                    <td className='px-4 py-2 text-gray-400'>${data.fine}</td>
                     <td className='px-4 py-2 text-gray-400'>
                       <ul className='list-disc list-inside'>
                         {JSON.parse(data.crimes).map((crime: string, index: number) => (

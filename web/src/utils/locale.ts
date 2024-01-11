@@ -1,3 +1,3 @@
 export const Locale: {
-    [key: string]: string;
-  } = {};
+  [key: string]: string;
+} = {};

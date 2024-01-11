@@ -1,8 +1,6 @@
 local tabletObj = nil
 local uiLoaded = false
 
-lib.locale()
-
 local function ToggleNuiFrame(shouldShow)
     SetNuiFocus(shouldShow, shouldShow)
     SendReactMessage('setVisible', shouldShow)
@@ -46,7 +44,8 @@ Citizen.CreateThread(function()
 		end
 	end
     local data = {
-        locales = uiLocales
+        locales = uiLocales,
+        fines = Config.Fines
     }
 
     while not uiLoaded do Wait(100) end
