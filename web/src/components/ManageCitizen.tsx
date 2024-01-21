@@ -82,7 +82,7 @@ const ManageCitizen = () => {
           <div className='w-1/3'>
             <ImageWithFallback src={citizenData.mdt_image} />
             <div className='flex mt-2 gap-2'>
-              <input type='text' name='image' placeholder={Locale.ui_image_url_placeholder} value={citizenData.mdt_image} onChange={handleInputChange} className='w-4/5 p-2 rounded-lg ring-1 ring-inset ring-gray-700 bg-gray-800 focus:outline-none focus:ring focus:ring-blue-700' />
+              <input type='text' name='mdt_image' placeholder={Locale.ui_image_url_placeholder} value={citizenData.mdt_image} onChange={handleInputChange} className='w-4/5 p-2 rounded-lg ring-1 ring-inset ring-gray-700 bg-gray-800 focus:outline-none focus:ring focus:ring-blue-700' />
               <Button width='w-1/5' icon={faFloppyDisk} onClick={updateProfileImage} />
             </div>
           </div>

@@ -3,7 +3,7 @@ game 'gta5'
 
 author 'VRS'
 description 'Simple MDT system'
-version 'v1.5.0'
+version 'v1.5.1'
 lua54 'yes'
 
 shared_scripts {
