@@ -4,10 +4,6 @@ lib.versionCheck('gabovrs/vrs_mdt')
 
 local wantedPlayers = {}
 
-lib.callback.register('vrs_mdt:isPlayerPolice', function(source)
-    return IsPolice(source)
-end)
-
 lib.callback.register('vrs_mdt:getServerData', function(source)
     local xPlayer = ESX.GetPlayerFromId(source)
     local playersInService = 0
@@ -77,17 +73,6 @@ lib.callback.register('vrs_mdt:getCitizenDetailsByIdentifier', function(source, 
         })
     end
 end)
-
-function IsPolice(source)
-    local xPlayer = ESX.GetPlayerFromId(source)
-    local isPolice = false
-    for _, job in pairs(Config.PoliceJobs) do
-        if xPlayer.getJob().name == job then
-            isPolice = true
-        end
-    end
-    return isPolice
-end
 
 if Config.Command.Enabled then
     ESX.RegisterCommand(Config.Command.Name, 'user', function(xPlayer, args, showError)

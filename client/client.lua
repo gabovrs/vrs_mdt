@@ -1,3 +1,5 @@
+ESX = exports['es_extended']:getSharedObject()
+
 local tabletObj = nil
 local uiLoaded = false
 
@@ -6,33 +8,40 @@ local function ToggleNuiFrame(shouldShow)
     SendReactMessage('setVisible', shouldShow)
 end
 
-function ShowMDT()
-    lib.callback('vrs_mdt:isPlayerPolice', false, function(isPolice)
-        if isPolice then
-            lib.requestAnimDict(Config.Tablet.AnimDict)
-            lib.requestModel(Config.Tablet.Prop)
-            local plyPed = PlayerPedId()
-            tabletObj = CreateObject(Config.Tablet.Prop, 0.0, 0.0, 0.0, true, true, false)
-            local tableBoneIndex = GetPedBoneIndex(plyPed, Config.Tablet.Bone)
-            AttachEntityToEntity(tabletObj, plyPed, Config.Tablet.BoneIndex, Config.Tablet.OffSet, Config.Tablet.Rot, true, false, false, false, 2, true)
-            SetModelAsNoLongerNeeded(Config.Tablet.Prop)
-            TaskPlayAnim(plyPed, Config.Tablet.AnimDict, Config.Tablet.AnimName, 3.0, 3.0, -1, 49, 0, 0, 0, 0)
-            UpdateMDT()
-            Citizen.Wait(500)
-            ToggleNuiFrame(true)
-        else
-            lib.notify({
-                description = locale('insufficient_permits'),
-                type = 'error',
-            })
+function IsPolice()
+    local playerData = ESX.GetPlayerData()
+    for _, job in pairs(Config.PoliceJobs) do
+        if playerData.job.name == job then
+            return true
         end
-    end)
+    end
 end
 
 function UpdateMDT()
     local data = lib.callback.await('vrs_mdt:getServerData', false)
     data.minsInService = math.floor(GetGameTimer()/1000/60)
     SendReactMessage('setData', data)
+    return true
+end
+
+function ShowMDT()
+    if IsPolice() then
+        lib.requestModel(Config.Tablet.Prop)
+        lib.requestAnimDict(Config.Tablet.AnimDict)
+        local coords = GetEntityCoords(cache.ped)
+        tabletObj = CreateObject(Config.Tablet.Prop, coords.x, coords.y, coords.z, true, true, true)
+        AttachEntityToEntity(tabletObj, cache.ped, GetPedBoneIndex(cache.ped, Config.Tablet.Bone), Config.Tablet.OffSet, Config.Tablet.Rot, true, true, false, true, 0, true)
+        SetModelAsNoLongerNeeded(Config.Tablet.Prop)
+        TaskPlayAnim(cache.ped, Config.Tablet.AnimDict, Config.Tablet.AnimName, 3.0, 3.0, -1, 49, 0, 0, 0, 0)
+        RemoveAnimDict(Config.Tablet.AnimDict)
+        UpdateMDT()
+        ToggleNuiFrame(true)
+    else
+        lib.notify({
+            description = locale('insufficient_permits'),
+            type = 'error',
+        })
+    end
 end
 
 Citizen.CreateThread(function()
